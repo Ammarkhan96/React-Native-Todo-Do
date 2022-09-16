@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Header from './components/header';
 import TodoItem from './components/todoitem';
 import AddTodo from './components/addtodo';
+import Sandbox from './components/sandbox';
 
 export default function App() {
   const [todos, setTodos] = useState([
@@ -28,6 +29,11 @@ export default function App() {
    })
   }
   return (
+    // <Sandbox />
+    <TouchableWithoutFeedback onPress={() => {
+      Keyboard.dismiss()
+      console.log('dismissed Keyboard');
+    }}>
     <View style={styles.container}>
       <Header />
       <View style={styles.content}>
@@ -43,6 +49,7 @@ export default function App() {
       </View>
       
     </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -53,8 +60,10 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 40,
+    flex: 1,
   },
   list : {
+    flex: 1,
     marginTop: 20,
   },
 });
